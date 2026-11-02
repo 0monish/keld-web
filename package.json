@@ -10,6 +10,7 @@
     "cln": "bun run clean && bun install && bun dev",
     "package:standalone": "node scripts/package-standalone.mjs",
     "build:release": "bun run build && bun run package:standalone",
+    "check:production": "node scripts/check-production-access.mjs",
     "build:rules": "bun run lint-rules/build-rules.ts",
     "lint": "bun run build:rules && oxlint --max-warnings=0",
     "lint:fix": "bun run build:rules && oxlint --fix --fix-suggestions --max-warnings=0",

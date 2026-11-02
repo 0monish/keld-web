@@ -95,7 +95,11 @@ export default defineConfig({
       },
     },
     {
-      files: ["scripts/package-standalone.mjs", "next.config.ts"],
+      files: [
+        "scripts/package-standalone.mjs",
+        "scripts/check-production-access.mjs",
+        "next.config.ts",
+      ],
       rules: {
         "project-local/no-nodejs-imports": "off",
         "no-restricted-properties": "off",

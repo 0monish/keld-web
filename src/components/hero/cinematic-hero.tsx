@@ -21,6 +21,10 @@ export function CinematicHero({
   controls?: boolean;
   editor?: boolean;
 }) {
+  // Defense in depth: neither an accidentally passed prop nor an old browser
+  // draft may activate Scene Lab in a production client bundle.
+  // eslint-disable-next-line no-restricted-properties -- Next.js replaces this at build time.
+  const studioEnabled = process.env.NODE_ENV === "development" && (editor || controls);
   const host = useRef<HTMLDivElement>(null);
   const syncInspector = useRef<((preset: ScenePreset) => void) | null>(null);
   const [controller, setController] = useState<SceneController | null>(null);
@@ -58,18 +62,20 @@ export function CinematicHero({
         abort.signal.throwIfAborted();
         runtime = await createScene(element, {
           signal: abort.signal,
-          editor: true,
+          editor: studioEnabled,
           onFailure: fail,
           onPlaying: () => undefined,
-          restoreTuning: (defaults) => {
-            try {
-              const saved = localStorage.getItem(sceneDraftKey(defaults.asset));
-              return saved && saved.length < 120_000 ? JSON.parse(saved) : null;
-            } catch {
-              return null;
-            }
-          },
-          onTuningChange: (preset) => syncInspector.current?.(preset),
+          restoreTuning: studioEnabled
+            ? (defaults) => {
+                try {
+                  const saved = localStorage.getItem(sceneDraftKey(defaults.asset));
+                  return saved && saved.length < 120_000 ? JSON.parse(saved) : null;
+                } catch {
+                  return null;
+                }
+              }
+            : undefined,
+          onTuningChange: studioEnabled ? (preset) => syncInspector.current?.(preset) : undefined,
         });
         abort.signal.throwIfAborted();
         clearInterval(timeout);
@@ -90,7 +96,7 @@ export function CinematicHero({
       document.removeEventListener("visibilitychange", syncVisibility);
       runtime?.dispose();
     };
-  }, [attempt]);
+  }, [attempt, studioEnabled]);
 
   return (
     <div
@@ -127,7 +133,7 @@ export function CinematicHero({
       <noscript>
         <p className="scene-launcher">Enable JavaScript to view the live 3D scene.</p>
       </noscript>
-      {(editor || controls) && controller && !failed && (
+      {studioEnabled && controller && !failed && (
         <SceneInspector controller={controller} initiallyOpen={controls} syncRef={syncInspector} />
       )}
     </div>

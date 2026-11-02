@@ -6,7 +6,7 @@ This repository contains the **website**, not the [KELD framework](https://githu
 
 ## Technology
 
-Next.js 16.4.3 (App Router), React 19, TypeScript, Tailwind CSS v4 (for the branded footer), Three.js for the interactive 3D hero, lil-gui for the optional scene editor, and a deferred Paper Shaders liquid-metal treatment for the GYLDLAB and KELD footer marks.
+Next.js 16.4.3 (App Router), React 19, TypeScript, Tailwind CSS v4 (for the branded footer), Three.js for the interactive 3D hero, lil-gui for the **development-only** scene editor, and a deferred Paper Shaders liquid-metal treatment for the GYLDLAB and KELD footer marks.
 
 The hero uses **on-demand WebGL rendering**. The scene stops rendering when idle; it does not use progressive path tracing on the homepage. The viewer can fall back to an explicit error/retry state if WebGL is unavailable.
 
@@ -19,7 +19,13 @@ bun install --frozen-lockfile
 bun run dev
 ```
 
-Open http://localhost:3000. The interactive Scene Lab can also be opened at `/lab/motion`. Editor adjustments and imported JSON presets are stored in the browser; they do not modify Blender models or server-side files.
+Open http://localhost:3000. **In development only**, the interactive Scene Lab is available at `/lab/motion` and `/lab/physical`. Editor adjustments and imported JSON presets are stored in the browser; they do not modify Blender models or server-side files.
+
+## Production access policy
+
+**Scene Lab must never appear on the production homepage.** Both `/lab/motion` and `/lab/physical` return **HTTP 404** in production. The production hero never initializes the editor, OrbitControls, or saved development tuning drafts. The public 3D rendering, product links and footer remain available.
+
+This policy is checked after every release build by `bun run check:production` and by the GitHub Actions workflow. Do not expose the editor with a client-side hide/show toggle; the production routes are denied server-side as well.
 
 ## Quality and release build
 
@@ -28,6 +34,7 @@ bun run fmt:check
 bun run lint
 bun run typecheck
 bun run build:release
+bun run check:production
 ```
 
 `build:release` produces `.next/standalone/` and packages the browser chunks and `public/` assets alongside Next.js's standalone server. For a self-hosted Node.js production preview, run:
@@ -38,7 +45,7 @@ HOSTNAME=127.0.0.1 PORT=3000 NODE_ENV=production node .next/standalone/server.js
 
 For an external launch, configure an HTTPS reverse proxy, health monitoring, domain/DNS, and platform-specific deployment controls. **Pushing GitHub source does not itself deploy the site.** The `.next/`, `node_modules/`, local Blender studies, large original texture packs, and test screenshots are intentionally excluded from Git.
 
-The repository includes a GitHub Actions workflow that checks formatting, lint rules, TypeScript, and the standalone release build on pushes and pull requests.
+The repository includes a GitHub Actions workflow that checks formatting, lint rules, TypeScript, the standalone release build, and production-only route restrictions on pushes and pull requests.
 
 ## Website structure
 

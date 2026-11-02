@@ -32,3 +32,5 @@ jobs:
         run: bun run typecheck
       - name: Build distributable Next.js server
         run: bun run build:release
+      - name: Verify production blocks Scene Lab
+        run: bun run check:production

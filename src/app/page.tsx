@@ -56,7 +56,7 @@ export default function Home() {
       </a>
       <main id="main">
         <section className="hero-section" aria-labelledby="hero-heading">
-          <CinematicHero editor />
+          <CinematicHero />
           <div className="hero-scrim" aria-hidden="true" />
           <div className="hero-content">
             <h1 id="hero-heading">

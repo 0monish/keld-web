@@ -36,7 +36,7 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 
 import type { SceneController } from "@/components/hero/_types/scene-runtime";
 import { createDeckReflection } from "@/components/hero/deck-reflection";
-import { createSceneTuner, type SceneTuner } from "@/components/hero/editor/scene-bindings";
+import type { SceneTuner } from "@/components/hero/editor/scene-bindings";
 import type { ScenePreset, Vec3 } from "@/components/hero/editor/scene-preset";
 import { HERO_ASSET_ROOT, HERO_COMPACT_QUERY } from "@/components/hero/scene-assets";
 import { readConfig } from "@/components/hero/scene-config";
@@ -425,7 +425,9 @@ export async function createScene(host: HTMLElement, options: Options): Promise<
 
     // The opt-in scene editor adds tuning wrappers and orbit controls. Source
     // meshes and animation clips remain owned by the imported glTF.
-    if (options.editor) {
+    // eslint-disable-next-line no-restricted-properties -- Build-time development-only branch.
+    if (process.env.NODE_ENV === "development" && options.editor) {
+      const { createSceneTuner } = await import("@/components/hero/editor/scene-bindings");
       tuner = createSceneTuner({
         source: config,
         scene,
@@ -610,7 +612,8 @@ export async function createScene(host: HTMLElement, options: Options): Promise<
     signal.addEventListener("abort", dispose, { once: true });
     signal.throwIfAborted();
 
-    if (options.editor && tuner) {
+    // eslint-disable-next-line no-restricted-properties -- Build-time development-only branch.
+    if (process.env.NODE_ENV === "development" && options.editor && tuner) {
       // Loaded only in the local editing lab. No global window listeners or
       // perpetual controls loop; pointer changes trigger a single redraw.
       const { OrbitControls: Orbit } = await import("three/addons/controls/OrbitControls.js");
