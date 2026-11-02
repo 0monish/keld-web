@@ -1,0 +1,61 @@
+{
+  "name": "keld-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun --bun next dev",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
+    "clean": "bun exec 'rm -rf .next node_modules' || bun run scripts/clean-workspace.ts",
+    "cln": "bun run clean && bun install && bun dev",
+    "package:standalone": "node scripts/package-standalone.mjs",
+    "build:release": "bun run build && bun run package:standalone",
+    "build:rules": "bun run lint-rules/build-rules.ts",
+    "lint": "bun run build:rules && oxlint --max-warnings=0",
+    "lint:fix": "bun run build:rules && oxlint --fix --fix-suggestions --max-warnings=0",
+    "fmt": "bun fmt --no-script",
+    "fmt:check": "bun fmt --check --no-script",
+    "format": "bun fmt --no-script",
+    "format:check": "bun fmt --check --no-script",
+    "typecheck": "next typegen && tsc --noEmit",
+    "check": "bun run lint && bun run typecheck && bun run build",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@paper-design/shaders-react": "0.0.80",
+    "lil-gui": "0.21.0",
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "three": "0.187.0",
+    "three-gpu-pathtracer": "0.0.27",
+    "three-mesh-bvh": "0.9.15",
+    "xatlas-web": "0.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/bun": "^1.4.3",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "0.187.0",
+    "husky": "9.1.7",
+    "lint-staged": "17.6.0",
+    "oxlint": "1.90.0",
+    "postcss": "8.5.6",
+    "tailwindcss": "4.3.3",
+    "typescript": "~5.9.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs,json,md,css,scss,yml,yaml}": [
+      "bun fmt --no-script"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "oxlint --fix --fix-suggestions --max-warnings=0"
+    ]
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "bun@1.4.4"
+}

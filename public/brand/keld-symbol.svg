@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="680" viewBox="0 0 900 680" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">KELD symbol</title>
+  <desc id="logo-desc">Two-piece geometric symbol reconstructed from the approved flat reference. No wordmark.</desc>
+  <path id="keld-upper" fill="#101214" d="M 439 72 H 768 C 786 72 794 81 794 99 V 229 C 794 247 786 256 768 256 H 442 C 416 256 399 261 379 280 L 313 343 C 296 360 289 376 289 397 V 517 C 289 531 281 540 265 540 H 128 C 111 540 102 531 102 514 V 304 C 102 286 113 277 130 277 H 304 C 331 277 347 270 367 251 L 381 237 C 400 218 408 197 408 175 V 102 C 408 83 419 72 439 72 Z"/>
+  <path id="keld-lower" fill="#101214" d="M 373 411 H 628 C 652 411 669 420 685 437 L 779 540 C 791 553 796 563 796 580 V 601 C 796 617 787 624 773 624 H 492 C 465 624 446 616 427 597 L 370 540 C 355 525 349 513 349 493 V 434 C 349 419 357 411 373 411 Z"/>
+</svg>

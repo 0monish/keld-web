@@ -1,0 +1,11 @@
+/*
+ * Tailwind v4 utilities for the new brand footer. Do not import Preflight:
+ * the existing realtime 3D hero has deliberate global/reset styling.
+ */
+@import "tailwindcss/theme.css" layer(theme);
+/* Utilities are unlayered so they can intentionally override legacy element
+   rules (for example the site's global `a { color: inherit }`). */
+@import "tailwindcss/utilities.css";
+
+@source "../components/brand";
+@source "./page.tsx";

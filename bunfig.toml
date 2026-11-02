@@ -1,0 +1,39 @@
+[run]
+bun = true
+
+[fmt]
+printWidth = 100
+semi = true
+singleQuote = false
+trailingComma = "all"
+tabWidth = 2
+arrowParens = "always"
+sortPackageJson = true
+ignorePatterns = [
+  ".next/**",
+  "out/**",
+  "build/**",
+  "next-env.d.ts",
+  ".agents/**",
+  "design/**",
+  "public/**",
+  "lint-rules/dist/**",
+]
+
+[fmt.sortImports]
+groups = [
+  "side_effect",
+  ["builtin", "type-builtin"],
+  "react",
+  "next",
+  ["external", "type-external"],
+  ["internal", "type-internal"],
+  ["parent", "sibling", "index"],
+  "style",
+  "unknown",
+]
+customGroups = [
+  { groupName = "react", elementNamePattern = ["react", "react/**", "react-dom/**"] },
+  { groupName = "next", elementNamePattern = ["next", "next/**"] },
+]
+internalPattern = ["@/"]

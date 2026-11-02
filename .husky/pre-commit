@@ -1,0 +1,5 @@
+bun run build:rules
+bunx lint-staged
+bun run lint
+bun run typecheck
+bun run build

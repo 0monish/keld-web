@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "durationSeconds": 1.6,
+  "animation": "KELD_Assembly",
+  "background": "#05090e",
+  "exposure": 1.05,
+  "revision": "realtime-hero-v1",
+  "environmentIntensity": 0.7,
+  "hemisphereIntensity": 0.035,
+  "areaIntensityScale": 1,
+  "fog": {
+    "color": "#0b182a",
+    "density": 0.004
+  },
+  "renderMode": "raster",
+  "depthOfField": {
+    "target": [
+      2.45,
+      3.02,
+      0.34
+    ],
+    "aperture": 0.001,
+    "maxBlur": 0,
+    "desktopOnly": true,
+    "blenderFStop": 2.8
+  },
+  "cameras": {
+    "desktop": {
+      "position": [
+        5.1999998,
+        2.9000001,
+        12.0349998
+      ],
+      "target": [
+        1.4,
+        2.72,
+        1.035
+      ],
+      "fov": 26.5,
+      "near": 0.1,
+      "far": 120
+    },
+    "mobile": {
+      "position": [
+        5.6999998,
+        5.5,
+        10.8000002
+      ],
+      "target": [
+        2.65,
+        3.12,
+        0
+      ],
+      "fov": 38,
+      "near": 0.1,
+      "far": 120
+    }
+  },
+  "lights": [
+    {
+      "name": "WindowEmitter",
+      "type": "spot",
+      "position": [
+        5.73,
+        6,
+        -12.199
+      ],
+      "target": [
+        2.45,
+        1.3,
+        0.1
+      ],
+      "width": 1.56,
+      "height": 9.47,
+      "color": "#c3ddfa",
+      "intensity": 250,
+      "blenderEmissionStrength": 4,
+      "angle": 0.48,
+      "penumbra": 0.6,
+      "decay": 2,
+      "distance": 60
+    },
+    {
+      "name": "SideSoftbox",
+      "type": "area",
+      "position": [
+        7.5,
+        3.2,
+        -5.5
+      ],
+      "target": [
+        1.3,
+        2.5,
+        0.2
+      ],
+      "width": 1.7,
+      "height": 2.5,
+      "color": "#bdd7f4",
+      "intensity": 6,
+      "blenderPowerWatts": 53.40707511102649
+    },
+    {
+      "name": "LeftStrip",
+      "type": "area",
+      "position": [
+        -2,
+        3.8,
+        3.2
+      ],
+      "target": [
+        2.3,
+        3,
+        0
+      ],
+      "width": 0.35,
+      "height": 5,
+      "color": "#b4cde7",
+      "intensity": 5,
+      "blenderPowerWatts": 16.493361431346415
+    },
+    {
+      "name": "FrontSoftFill",
+      "type": "area",
+      "position": [
+        2.2,
+        2.4,
+        6
+      ],
+      "target": [
+        2.45,
+        2.8,
+        0
+      ],
+      "width": 4,
+      "height": 3,
+      "color": "#d7e1eb",
+      "intensity": 0.42,
+      "blenderPowerWatts": 13.194689145077131
+    }
+  ],
+  "stone": {
+    "id": "seaside_rock",
+    "tint": "#6d85a0",
+    "tiling": 0.18,
+    "normalStrength": 0.75
+  },
+  "reflection": {
+    "enabled": false,
+    "position": [
+      3,
+      1.262,
+      -0.2
+    ],
+    "width": 7.42,
+    "depth": 4.42
+  },
+  "world": {
+    "up": "Y",
+    "background": "#070b11",
+    "ambientColor": "#9db6d8",
+    "ambientIntensitySuggestion": 0.025,
+    "blenderWorldStrength": 0.018
+  },
+  "worldTransform": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "logoTransform": {
+    "position": [
+      2.45,
+      3.02,
+      0
+    ],
+    "uniformScale": 0.92,
+    "upperVerticalShiftZ": -0.534388542175293,
+    "lowerStagingShiftX": 0.25,
+    "lowerStagingShiftY": -0.2,
+    "lowerStagingScale": 0.92,
+    "lowerStagingVerticalScale": 0.8,
+    "sourceFrontSilhouetteAndGap": "corrected native XL PBR master; scene-only gap and ground contact calibrated"
+  },
+  "objectNames": {
+    "logoUpper": "LogoUpper",
+    "logoLower": "LogoLower",
+    "pedestal": "BasaltMonolith",
+    "aperture": "BlueDaylightAperture"
+  },
+  "animationPlayback": {
+    "loop": false,
+    "clampWhenFinished": true,
+    "fps": 30,
+    "firstFrame": 0,
+    "lastFrame": 48,
+    "settledFrame": 27,
+    "defaultPose": "assembled at frame 48"
+  },
+  "notes": [
+    "All positions and targets in this JSON use Three.js Y-up coordinates.",
+    "Area lights and world lighting are reconstructed by the browser; no softbox meshes are exported.",
+    "Browser light intensities are starting values; Cycles watts and Three.js intensities are different units.",
+    "Use the two exported mesh animations without additional per-part choreography.",
+    "The desktop composition reserves the left 42 percent for HTML copy.",
+    "Realtime display uses geometry-derived shadow maps on the window key, area fills, and a roughness-filtered reflection capture. It does not simulate full multiple-bounce light transport."
+  ],
+  "logoFinalTransforms": {
+    "LogoLower": {
+      "position": [
+        2.7628676891326904,
+        2.5564560890197754,
+        0.19999998807907104
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        0.8464000225067139,
+        0.6771200299263,
+        0.8464000225067139
+      ]
+    },
+    "LogoUpper": {
+      "position": [
+        2.450000047683716,
+        2.4856114387512207,
+        0
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        0.9200000166893005,
+        0.9200000166893005,
+        0.9200000166893005
+      ]
+    }
+  }
+}
